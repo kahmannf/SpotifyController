@@ -15,7 +15,7 @@ namespace SpotifyControllerAPI.Web
     {
         public event EventHandler<WebRequestStatus> StatusChanged;
 
-        public const int LOCKDOWN_WAITTIME_MULTIPLIER = 3;
+        public const int LOCKDOWN_WAITTIME_MULTIPLIER = 4;
 
         private const int THREADSLEEPTIME = 100;
 

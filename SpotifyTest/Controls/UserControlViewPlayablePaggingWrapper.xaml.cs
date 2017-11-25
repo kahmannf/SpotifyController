@@ -1,4 +1,5 @@
-﻿using SpotifyControllerAPI.Model.Spotify;
+﻿using SpotifyControllerAPI.Model;
+using SpotifyControllerAPI.Model.Spotify;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,9 @@ namespace SpotifyController.Controls
                     break;
                 case PagingWrapper<Playlist> playlists:
                     vm = new ViewModelViewPlayablePagingWrapper<Playlist>(playlists);
+                    break;
+                case PlaylistAggregationSearchResult aggrSearchResult:
+                    vm = new ViewModelAggregationSearchResult(aggrSearchResult);
                     break;
                 default:
                     vm = null;

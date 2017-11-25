@@ -163,7 +163,37 @@
                     </TextBlock>
                 </Grid>
             </Border>
-        </DataTemplate> 
+        </DataTemplate>
+        <DataTemplate x:Key="AggrSearchItem">
+            <Border Width="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=ActualWidth}" Background="Transparent" Name="SearchItemBorder">
+                <Border.ContextMenu>
+                    <ContextMenu DataContext="{Binding Path=DataContext.Track, Source=SearchItemBorder}">
+                        <MenuItem Header="Add to session" Command="controlBase:CustomCommands.AddToSession"></MenuItem>
+                        <MenuItem Header="Add to queue" Command="controlBase:CustomCommands.AddToQueue"></MenuItem>
+                        <MenuItem Header="View Audio Analysis" Command="controlBase:CustomCommands.ViewAudioAnalysis"></MenuItem>
+                    </ContextMenu>
+                </Border.ContextMenu>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <!--Keep last column as a margin-->
+                        <ColumnDefinition Width="40" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding Count}" Foreground="White"></Label>
+                    <Label Content="{Binding Track.Name}" Foreground="White" Grid.Column="1"></Label>
+                    <controlBase:UserControlDisplayLinkableSpotifyObjectArray DataContext="{Binding Track.Artists}" Grid.Column="2"></controlBase:UserControlDisplayLinkableSpotifyObjectArray>
+                    <TextBlock DataContext="{Binding Track.Album}" Text="{Binding Name}" Grid.Column="3" FontSize="12" Style="{StaticResource LinkTextBlockStyle}">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="controlBase:CustomCommands.ViewItem"></MouseBinding>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+
+                </Grid>
+            </Border>
+        </DataTemplate>
         <DataTemplate x:Key="PlaylistViewTemplate">
             <viewObjectControls:ViewPlaylistControl></viewObjectControls:ViewPlaylistControl>
         </DataTemplate>

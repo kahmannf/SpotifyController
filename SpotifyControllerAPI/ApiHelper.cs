@@ -12,12 +12,6 @@ namespace SpotifyControllerAPI
 {
     public static class ApiHelper
     {
-        public static List<SpotifyBaseObject> ParseSearchResult(string json)
-        {
-            var jsonObject = JsonConvert.DeserializeObject(json);
-
-            return new List<SpotifyBaseObject>();
-        }
 
         public static async Task<List<Track>> GetTracks(SpotifyBaseObject spi, User user)
         {

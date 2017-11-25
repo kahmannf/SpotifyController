@@ -68,6 +68,7 @@
     <Compile Include="Controls\UserControlViewPlayablePaggingWrapper.xaml.cs">
       <DependentUpon>UserControlViewPlayablePaggingWrapper.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ViewModelAggregationSearchResult.cs" />
     <Compile Include="Controls\ViewModelViewPlayablePagingWrapper.cs" />
     <Compile Include="Controls\ViewSpotifyObjectControls\ViewAlbumControl.xaml.cs">
       <DependentUpon>ViewAlbumControl.xaml</DependentUpon>

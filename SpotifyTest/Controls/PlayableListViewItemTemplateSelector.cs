@@ -1,4 +1,5 @@
-﻿using SpotifyControllerAPI.Model.Spotify;
+﻿using SpotifyControllerAPI.Model;
+using SpotifyControllerAPI.Model.Spotify;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,9 @@ namespace SpotifyController.Controls
                     break;
                 case Album album:
                     key = "AlbumListViewItem";
+                    break;
+                case AggregationSearchTrackItem searchItem:
+                    key = "AggrSearchItem";
                     break;
             }
 

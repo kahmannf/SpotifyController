@@ -13,6 +13,7 @@ namespace SpotifyControllerAPI.Model
         public Track Track { get; private set; }
 
         public List<Playlist> Playlists { get; private set; }
+        
 
         public AggregationSearchTrackItem(Track t, Playlist p, AggregationSearchTrackItem firstItem)
         {

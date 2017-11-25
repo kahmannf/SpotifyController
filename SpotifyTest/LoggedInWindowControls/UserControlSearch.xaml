@@ -120,7 +120,7 @@
                     <controlBase:UserControlViewPlayablePaggingWrapper DataContext="{Binding SimplePlaylists}" Margin="5,0,5,5" Grid.Row="3"></controlBase:UserControlViewPlayablePaggingWrapper>
                 </Grid>
                 <Grid x:Name="AdvancedResult" Visibility="{Binding AdvancedSearchResultVisibility}">
-                    
+                    <controlBase:UserControlViewPlayablePaggingWrapper DataContext="{Binding AdvancedSearchResult}"></controlBase:UserControlViewPlayablePaggingWrapper>
                 </Grid>
             </Grid>
         </Grid>

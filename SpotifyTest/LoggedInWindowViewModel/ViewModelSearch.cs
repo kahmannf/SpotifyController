@@ -286,6 +286,19 @@ namespace SpotifyController.LoggedInWindowViewModel
             }
         }
 
+        private PlaylistAggregationSearchResult _advancedSearchResult;
+
+        public PlaylistAggregationSearchResult AdvancedSearchResult
+        {
+            get { return _advancedSearchResult; }
+            set
+            {
+                _advancedSearchResult = value;
+                NotifyPropertyChanged("AdvancedSearchResult");
+            }
+        }
+
+
 
         public override async void Update()
         {
@@ -317,6 +330,7 @@ namespace SpotifyController.LoggedInWindowViewModel
         {
             _parent.BlockUI();
 
+
             if (string.IsNullOrEmpty(SearchText) || AdvSearchMaxPlaylists == 0)
                 return;
 
@@ -330,31 +344,41 @@ namespace SpotifyController.LoggedInWindowViewModel
 
             _search.Run(SearchText, AdvSearchMaxPlaylists, _parent.LoggedInUser, CompleteAdvancedSearch, Dispatcher.CurrentDispatcher);
 
-            UpdateAdvancedSearchProcess();
+            if (_updateAdvancedSearchProgressTimer == null)
+            {
+                _updateAdvancedSearchProgressTimer = new DispatcherTimer
+                {
+                    Interval = new TimeSpan(0, 0, 0, 0, 500)
+                };
+
+                _updateAdvancedSearchProgressTimer.Tick += _updateAdvancedSearchProgressTimer_Tick;
+            }
+
+            _updateAdvancedSearchProgressTimer.Start();
+        }
+
+        private void _updateAdvancedSearchProgressTimer_Tick(object sender, EventArgs e)
+        {
+            int totalLoaded = _search.Results.Tracks.Values.Count == 0 ? 0 : _search.Results.Tracks.Values.Select(x => x.Count).Aggregate((y, z) => y + z);
+
+            SearchProgressMessage = $"Searching and processing playlists. {_search.CurrentParallelTasks} parallel tasks running.\n" +
+                                    $"Playlists loaded:     {_search.Results.Playlists.Count} \n" +
+                                    $"Unique tracks loaded: {_search.Results.Tracks.Count}\n" +
+                                    $"Total tracks loaded:  {totalLoaded}";
         }
 
         private bool _advancedSearchRunning;
+        
 
-        private async void UpdateAdvancedSearchProcess()
-        {
-            while (_advancedSearchRunning)
-            {
-                int totalLoaded = _search.Results.Tracks.Values.Count == 0 ? 0 : _search.Results.Tracks.Values.Select(x => x.Count).Aggregate((y, z) => y + z);
-
-                SearchProgressMessage = $"Searching and processing playlists. {_search.CurrentParallelTasks} parallel tasks running.\n" +
-                                        $"Playlists loaded:     {_search.Results.Playlists.Count} \n" +
-                                        $"Unique tracks loaded: {_search.Results.Tracks.Count}\n" +
-                                        $"Total tracks loaded:  {totalLoaded}";
-
-                await Task.Run(() => System.Threading.Thread.Sleep(800));
-            }
-        }
+        private DispatcherTimer _updateAdvancedSearchProgressTimer;
 
         private void CompleteAdvancedSearch()
         {
-            PlaylistAggregationSearchResult result = _search.Results;
+            _updateAdvancedSearchProgressTimer?.Stop();
 
-            result.GetPage(0, 10);
+            AdvancedSearchResult = _search.Results;
+
+            _search = null;
 
             SetVisibilities(VisibilityConfigs.AdvancedResult);
 

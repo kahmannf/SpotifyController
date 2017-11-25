@@ -31,9 +31,9 @@ namespace SpotifyControllerAPI.Model
             ApiHelper.MergeSort(_sortedItems,(x, y) => 
             {
                 if (x.Count > y.Count)
-                    return 1;
-                else if (y.Count > x.Count)
                     return -1;
+                else if (y.Count > x.Count)
+                    return 1;
                 else
                     return 0;
             });
@@ -56,7 +56,10 @@ namespace SpotifyControllerAPI.Model
 
             for (int i = previousItems; i < previousItems + pageSize; i++)
             {
-                result[i - previousItems] = _sortedItems[i];
+                if (i < _sortedItems.Length)
+                {
+                    result[i - previousItems] = _sortedItems[i];
+                }
             }
 
             return result;
