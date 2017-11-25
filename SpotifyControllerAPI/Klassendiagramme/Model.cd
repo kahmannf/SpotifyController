@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="SpotifyControllerAPI.Model.PlayTrackRequest">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PlayTrackRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Session">
+    <Position X="4.5" Y="0.5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AgBEAgBiCCAAQAAFAUACYAESBAAAAOAgMEEAMAAAkAA=</HashCode>
+      <FileName>Model\Session.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.SessionHistoryItem">
+    <Position X="12.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\SessionHistoryItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.SearchConfiguration">
+    <Position X="13.25" Y="1.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAABAAAACAAAAEAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Model\SearchConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="SpotifyControllerAPI.Model.SessionContext">
+    <Position X="10" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Model\SessionHistoryItem.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

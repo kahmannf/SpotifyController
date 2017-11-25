@@ -1,0 +1,82 @@
+﻿<Window x:Class="SpotifyController.LoggedInWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpotifyController"
+        xmlns:controls="clr-namespace:SpotifyController.LoggedInWindowControls"
+        xmlns:command="clr-namespace:SpotifyController.Controls"
+        mc:Ignorable="d"
+        Title="Spotify Controller" Height="800" Width="1200"
+        KeyUp="Window_KeyUp" Background="#585858" WindowState="Maximized" >
+    <Window.CommandBindings>
+        <CommandBinding Command="command:CustomCommands.AddToQueue" CanExecute="CommandBindingAddToQueue_CanExecute" Executed="CommandBindingAddToQueue_Executed"></CommandBinding>
+        <CommandBinding Command="command:CustomCommands.AddToSession" CanExecute="CommandBindingAddToSession_CanExecute" Executed="CommandBindingAddToSession_Executed"></CommandBinding>
+        <CommandBinding Command="command:CustomCommands.ViewItem" CanExecute="CommandBindingViewItem_CanExecute" Executed="CommandBindingViewItem_Executed"></CommandBinding>
+        <CommandBinding Command="command:CustomCommands.SetDeviceAsActive" CanExecute="CommandBindingSetDeviceAsActive_CanExecute" Executed="CommandBindingSetDeviceAsActive_Executed"></CommandBinding>
+        <CommandBinding Command="command:CustomCommands.SwitchToTab" CanExecute="CommandBindingSwitchToTab_CanExecute" Executed="CommandBindingSwitchToTab_Executed"></CommandBinding> 
+        <CommandBinding Command="command:CustomCommands.CloseViewObjectTab" CanExecute="CommandBindingCloseViewObjectTab_CanExecute" Executed="CommandBindingCloseViewObjectTab_Executed"></CommandBinding>
+        <CommandBinding Command="command:CustomCommands.ViewAudioAnalysis" CanExecute="CommandBindingViewAudioAnalysis_CanExecute" Executed="CommandBindingViewAudioAnalysis_Executed"></CommandBinding>
+    </Window.CommandBindings>
+    <Grid IsEnabled="{Binding UIEnabled}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="Navigation" Grid.Row="0" >
+            <ItemsControl ItemsSource="{Binding TabItems}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal">
+
+                        </StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock TextAlignment="Center" VerticalAlignment="Center" 
+                           Margin="5,0,2.5,0" Style="{StaticResource LinkTextBlockStyle}"
+                           Text="{Binding Name}">
+                            <TextBlock.ContextMenu>
+                                <ContextMenu>
+                                    <ContextMenu.CommandBindings>
+                                        <CommandBinding Command="command:CustomCommands.CloseViewObjectTab" CanExecute="CommandBindingCloseViewObjectTab_CanExecute" Executed="CommandBindingCloseViewObjectTab_Executed"></CommandBinding>
+                                    </ContextMenu.CommandBindings>
+                                    <MenuItem Header="Close" Command="command:CustomCommands.CloseViewObjectTab"></MenuItem>
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="command:CustomCommands.SwitchToTab" />
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+        <TabControl Grid.Row="1" SelectedItem="{Binding SelectedTabItem}" ItemsSource="{Binding TabItems}" Background="Transparent">
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </TabControl.ItemContainerStyle>
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentPresenter Content="{Binding Content}" DataContext="{Binding ViewModel}">
+                    </ContentPresenter>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+        <StatusBar Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="2.5" Text="Web Status:"></TextBlock>
+                <TextBlock Margin="0,2.5,2.5,2.5" Text="{Binding WebStatus}"></TextBlock>
+            </StackPanel>
+        </StatusBar>
+    </Grid>
+</Window>

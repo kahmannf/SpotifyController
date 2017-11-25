@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="SpotifyController.LoggedInWindowControls.UserControlStart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SpotifyController.LoggedInWindowControls"
+             xmlns:controlBase="clr-namespace:SpotifyController.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="800"
+             >
+    <UserControl.Resources>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--Height="32"-->
+            <RowDefinition Height="0" />
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="Navigation" Grid.Row="0" >
+            <ItemsControl ItemsSource="{Binding Tabs}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal">
+
+                        </StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock TextAlignment="Center" VerticalAlignment="Center" 
+                           Margin="5,0,2.5,0" Style="{StaticResource LinkTextBlockStyle}"
+                           MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"
+                           Text="{Binding Name}">
+                            <TextBlock.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Close" Command="controlBase:CustomCommands.CloseViewObjectTab"></MenuItem>
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>
+                        </TextBlock>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+        
+        <Grid x:Name="Header" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="105"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Source="{Binding ImageUrl}" Width="100" Height="100" Margin="5,5,0,5"></Image>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0,0,0">
+                <TextBlock FontSize="20" Margin="5,40,0,0" Foreground="White">Hello,</TextBlock>
+                <TextBlock FontSize="20" Margin="5,40,0,0" Text="{Binding DisplayName}" Foreground="White"></TextBlock>
+            </StackPanel>
+            
+            
+        </Grid>
+
+        
+
+        <Grid x:Name="QueueAndPlayer" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <ListView ItemsSource="{Binding ManualQueueTracks}" ItemTemplateSelector="{StaticResource PlayableTemplateSelector}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      Background="Transparent"></ListView>
+
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding NoItemsQueueVisibility}" Foreground="White">No items inside the queue</Label>
+
+            <ListView Grid.Row="1" ItemsSource="{Binding BacklogQueueTracks}" ItemTemplateSelector="{StaticResource PlayableTemplateSelector}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      Background="Transparent"></ListView>
+
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding NoItemsBacklogVisibility}">
+                <TextBlock TextAlignment="Center" Margin="2" Foreground="White">No session started</TextBlock>
+                <Button Click="ButtonSession_Click">Click here to start a session</Button>
+            </StackPanel>
+
+            <Grid x:Name="Player" Grid.Row="2" IsEnabled="{Binding EnableSessionControl}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Margin="5">P/P</Button>
+                <Button Margin="0,5,5,5" Grid.Column="1" Click="ButtonPlayerNext_Click">Next</Button>
+
+                <Image Source="{Binding CurrentSongImage}" Grid.Column="2"></Image>
+                
+                <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                    <TextBlock Margin="1" Text="{Binding CurrentSong}" ></TextBlock>
+                    <TextBlock Margin="1" Text="{Binding CurrentArtists}"></TextBlock>
+                </StackPanel>
+                
+            </Grid>
+            
+        </Grid>
+        
+    </Grid>
+</UserControl>

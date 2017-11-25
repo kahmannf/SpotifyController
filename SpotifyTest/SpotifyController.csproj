@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1901A521-CA4E-4B32-9883-1FAF80814E93}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SpotifyController</RootNamespace>
+    <AssemblyName>SpotifyController</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RandomUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SpotifyControllerAPI\RandomUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AdvancedSearchResultItem.cs" />
+    <Compile Include="Controls\CustomCommands.cs" />
+    <Compile Include="Controls\PlayableListViewItemTemplateSelector.cs" />
+    <Compile Include="Controls\UserControlDisplayLinkableSpotifyObjectArray.xaml.cs">
+      <DependentUpon>UserControlDisplayLinkableSpotifyObjectArray.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserControlViewPlayablePaggingWrapper.xaml.cs">
+      <DependentUpon>UserControlViewPlayablePaggingWrapper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ViewModelViewPlayablePagingWrapper.cs" />
+    <Compile Include="Controls\ViewSpotifyObjectControls\ViewAlbumControl.xaml.cs">
+      <DependentUpon>ViewAlbumControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ViewSpotifyObjectControls\ViewAlbumViewModel.cs" />
+    <Compile Include="Controls\ViewSpotifyObjectControls\ViewPlaylistControl.xaml.cs">
+      <DependentUpon>ViewPlaylistControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ViewSpotifyObjectControls\ViewPlaylistViewModel.cs" />
+    <Compile Include="Controls\ViewSpotifyObjectTemplateSelector.cs" />
+    <Compile Include="Controls\VMPagingBase.cs" />
+    <Compile Include="LoggedInWindowControls\UserControlPlaylist.xaml.cs">
+      <DependentUpon>UserControlPlaylist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoggedInWindowControls\UserControlSearch.xaml.cs">
+      <DependentUpon>UserControlSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoggedInWindowControls\UserControlSession.xaml.cs">
+      <DependentUpon>UserControlSession.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoggedInWindowControls\UserControlStart.xaml.cs">
+      <DependentUpon>UserControlStart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoggedInWindowControls\UserControlViewObject.xaml.cs">
+      <DependentUpon>UserControlViewObject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoggedInWindowTabItem.cs" />
+    <Compile Include="LoggedInWindowViewModel\TabItemBaseViewModel.cs" />
+    <Compile Include="LoggedInWindowViewModel\ViewModelBaseViewObject.cs" />
+    <Compile Include="LoggedInWindowViewModel\ViewModelPlaylists.cs" />
+    <Compile Include="LoggedInWindowViewModel\ViewModelSearch.cs" />
+    <Compile Include="LoggedInWindowViewModel\ViewModelSession.cs" />
+    <Compile Include="LoggedInWindowViewModel\ViewModelStart.cs" />
+    <Compile Include="LoggedInWindowViewModel\ViewModelViewObject.cs" />
+    <Compile Include="ViewModelLoggedIn.cs" />
+    <Page Include="Controls\UserControlDisplayLinkableSpotifyObjectArray.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserControlViewPlayablePaggingWrapper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ViewSpotifyObjectControls\ViewAlbumControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ViewSpotifyObjectControls\ViewPlaylistControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoggedInWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoggedInWindowControls\UserControlPlaylist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoggedInWindowControls\UserControlSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoggedInWindowControls\UserControlSession.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoggedInWindowControls\UserControlStart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoggedInWindowControls\UserControlViewObject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoggedInWindow.xaml.cs">
+      <DependentUpon>LoggedInWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpotifyControllerAPI\SpotifyControllerAPI.csproj">
+      <Project>{180b6335-61c0-4653-b51e-9b0e82bfca7b}</Project>
+      <Name>SpotifyControllerAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\debugging.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\defaultimage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\none.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\computer.png" />
+    <Resource Include="images\smartphone.png" />
+    <Resource Include="images\speaker.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

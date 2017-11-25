@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="SpotifyController.Controls.ViewSpotifyObjectControls.ViewAlbumControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:SpotifyController.Controls"
+             xmlns:local="clr-namespace:SpotifyController.Controls.ViewSpotifyObjectControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500">
+    <Grid x:Name="LayoutGrid">
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid x:Name="AlbumInfos">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Image Source="{Binding ImageUrl}" Width="90" Height="90" Margin="5"></Image>
+            <StackPanel Grid.Column="1">
+                <Label Margin="0,5,0,0" Foreground="White" Content="Name"></Label>
+                <Label Margin="0,5,0,0" Foreground="White" Content="Artists"></Label>
+                <Label Margin="0,5,0,0" Foreground="White" Content="Label"></Label>
+            </StackPanel>
+            
+            <StackPanel Grid.Column="2">
+                <Label Margin="0,5,0,0" Foreground="White" Content="{Binding Name}"></Label>
+                <controls:UserControlDisplayLinkableSpotifyObjectArray DataContext="{Binding Artists}" Margin="0,5,0,0" Height="25.96"></controls:UserControlDisplayLinkableSpotifyObjectArray>
+                <Label Margin="0,5,0,0" Foreground="White" Content="{Binding Label}"></Label>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3">
+                <Label Margin="0,5,0,0" Foreground="White" Content="Genres"></Label>
+                <Label Margin="0,5,0,0" Foreground="White" Content="Popularity (%)"></Label>
+                <Label Margin="0,5,0,0" Foreground="White" Content="Releasedate"></Label>
+            </StackPanel>
+
+            <StackPanel Grid.Column="4">
+                <Label Margin="0,5,0,0" Foreground="White" Content="{Binding Genres}"></Label>
+                <Label Margin="0,5,0,0" Foreground="White" Content="{Binding Popularity}"></Label>
+                <Label Margin="0,5,0,0" Foreground="White" Content="{Binding ReleaseDate}"></Label>
+            </StackPanel>
+        </Grid>
+        
+        <ListView Grid.Row="1" Margin="2.5" Background="Transparent" ItemTemplateSelector="{StaticResource PlayableTemplateSelector}" 
+                      ItemsSource="{Binding TrackList}" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+
+        </ListView>
+
+    </Grid>
+</UserControl>

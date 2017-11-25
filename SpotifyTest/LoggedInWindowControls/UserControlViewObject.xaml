@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="SpotifyController.LoggedInWindowControls.UserControlViewObject"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SpotifyController.LoggedInWindowControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource LinkTextBlockStyle}" FontSize="10" Margin="2.5" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" Text="&lt;- Home &amp; close">
+        </TextBlock>
+        <TextBlock Style="{StaticResource LinkTextBlockStyle}" FontSize="10" Margin="2.5,14,2.5,2.5" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" Text="&lt;- Home">
+        </TextBlock>
+
+        <TextBlock FontSize="20" FontWeight="Bold" Margin="90,0,0,0" Text="Displaying:" Foreground="White"></TextBlock>
+        <TextBlock FontSize="20" FontWeight="Bold" Margin="200,0,0,0" Text="{Binding DisplayTypeName}" Foreground="White"></TextBlock>
+        <ContentPresenter Grid.Row="1" ContentTemplateSelector="{StaticResource ViewObjectTemplateSelector}" Content="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext}">
+            
+        </ContentPresenter>
+    </Grid>
+</UserControl>

@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="SpotifyController.LoggedInWindowControls.UserControlSession"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SpotifyController.LoggedInWindowControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="500">
+    <UserControl.Resources>
+        <Style x:Key="SessionOptionsContextMenuButton" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Click">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="ContextMenu.IsOpen">
+                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                </BooleanAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+            <Setter Property="ContextMenu">
+                <Setter.Value>
+                    <ContextMenu>
+                        <MenuItem Header="View Historie"></MenuItem>
+                        <MenuItem Header="Convert to Playlist"></MenuItem>
+                    </ContextMenu>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid IsEnabled="{Binding UIEnabled}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid x:Name="SessionDetails">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+        
+            <TextBlock Style="{StaticResource LinkTextBlockStyle}" FontSize="10" Margin="2.5" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" Text="&lt;- Home">
+            </TextBlock>
+
+            <TextBlock FontSize="20" FontWeight="Bold" Margin="60,0,0,0" Foreground="White">Session</TextBlock>
+        
+            <Grid x:Name="HighjackSession" Grid.Row="1" IsEnabled="{Binding CanHighjackSession}" Visibility="{Binding HighjackPanelVisibility}">
+                <Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Image Margin="5" VerticalAlignment="Center" Height="25" Width="25" Source="{Binding CurrentlyPlayingImage}"></Image>
+                    <Label Margin="0,5" VerticalAlignment="Center" Content="{Binding CurrentlyPlayingString}" Foreground="White" ></Label>
+
+                    <Button Content="Highjack Session" Margin="30,7" Width="100" Click="ButtonHighjackSession_Click">
+                        <Button.ToolTip>
+                            <ToolTip MaxWidth="400">
+                                <TextBlock>
+                                    &quot;Highjack Session&quot; will start a new session based on your current playback.
+                                    <LineBreak />
+                                    That mean if, for example, you are listening to a playlist, the playlist will be used 
+                                    <LineBreak />
+                                    as backlog for a new session. The Same works for artists and Albums.
+                                </TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <ListView ItemTemplateSelector="{StaticResource PlayableTemplateSelector}" 
+                          ItemsSource="{Binding SessionItems}" Margin="2.5" Background="Transparent"
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                </ListView>
+            </Grid>
+
+            <Grid x:Name="GridDevices" Grid.Column="1" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <ListView ItemTemplate="{StaticResource DeviceItemTemplate}" Margin="2.5"
+                      ItemsSource="{Binding Devices}" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      Background="Transparent">
+
+                </ListView>
+            </Grid>
+
+            <Grid x:Name="SessionControl" Grid.Row="3" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <Button Content="Start Session" Margin="5,0,0,0" IsEnabled="{Binding CanSessionBeStarted}" Click="ButtonStartSession_Click" Height="22" Width="100"></Button>
+                    <Button Content="{Binding StopSessionButtonText}" Margin="5,0,0,0" Click="ButtonStopSession_Click" Height="22" Width="100"></Button>
+                    <Button Margin="5,0,0,0" Content="Session options" IsEnabled="{Binding IsSessionRunning}" 
+                            Height="22" Width="100" Style="{StaticResource SessionOptionsContextMenuButton}">
+                    </Button>
+                </StackPanel>
+                
+                <Label Grid.Row="1" Foreground="Black" Content="Current Device:"></Label>
+                <ContentPresenter Margin="93,0,0,0" ContentTemplate="{StaticResource DeviceItemTemplate}" Content="{Binding ActiveDevice}" Grid.Row="1"></ContentPresenter>
+                
+            </Grid>
+            
+        </Grid>
+
+        
+    </Grid>
+</UserControl>

@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="SpotifyController.LoggedInWindowControls.UserControlSearch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SpotifyController.LoggedInWindowControls"
+             xmlns:controlBase="clr-namespace:SpotifyController.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource LinkTextBlockStyle}" FontSize="10" Margin="2.5" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" Text="&lt;- Home">
+        </TextBlock>
+
+        <TextBlock FontSize="20" FontWeight="Bold" Margin="60,0,0,0" Foreground="White">Search</TextBlock>
+
+        <Grid x:Name="Content" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid x:Name="SearchParameters">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="27"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBox Grid.ColumnSpan="3" Height="22" Margin="2.5" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBlock Grid.Column="3" Foreground="White" Text="Search Operators" TextDecorations="Underline" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ShowDuration="1000000">
+                    <TextBlock.ToolTip>
+                        <ToolTip >
+                            <TextBlock>
+                                Matching with Qoutes <LineBreak />
+                                roadhouse blues matches "Blues Roadhouse" and "Roadhouse of the Blues" <LineBreak />
+                                while "roadhouse blues" only matches "Roadhouse of the Blues" and not "Blues Roadhouse" <LineBreak />
+                                <LineBreak />
+                                Operators<LineBreak />
+                                Operator have to be uppercase.<LineBreak />
+                                NOT: excludes a word from the search.<LineBreak />
+                                Example: roadhouse NOT blues return items that contain "roadhouse" but excludes those that contain "blues"<LineBreak />
+                                OR: can be useed to broaden the search<LineBreak />
+                                Example: roadhouse OR blues rreturn items that contain either roadhouse or blues<LineBreak />
+                                <LineBreak />
+                                Wildcards<LineBreak />
+                                Asterisk (*) can be used as wildcart<LineBreak />
+                                Maximum two per search.<LineBreak /> 
+                                Cannnot be used in qouted parameters or at the beginning of a word<LineBreak />
+                                        
+                                        
+                                <Hyperlink>https://developer.spotify.com/web-api/search-item/</Hyperlink>
+                            </TextBlock>
+                        </ToolTip>
+                    </TextBlock.ToolTip>
+                </TextBlock>
+                <GroupBox Grid.Row="1" Margin="2.5" Grid.ColumnSpan="2" Header="Search Target" Foreground="White">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox Content="Tracks" Margin="2.5" VerticalAlignment="Center" IsChecked="{Binding SearchTracks}" Foreground="White"></CheckBox>
+                            <CheckBox Content="Playlists" Margin="2.5" VerticalAlignment="Center" IsChecked="{Binding SearchPlaylists}" Foreground="White"></CheckBox>
+                            <CheckBox Content="Artists" Margin="2.5" VerticalAlignment="Center" IsChecked="{Binding SearchArtists}" Foreground="White"></CheckBox>
+                            <CheckBox Content="Albums" Margin="2.5" VerticalAlignment="Center" IsChecked="{Binding SearchAlbums}" Foreground="White"></CheckBox>
+                        </StackPanel>
+
+                        <Button Grid.Column="1" Width="100" Height="50" Click="ButtonSimpleSearch_Click">GO!</Button>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Margin="0,2.5,2.5,2.5" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Header="Themed Playlist Aggregation Search" Foreground="White">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Height="22" Margin="0,2.5,0,0">Max playlists to include</TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical" Grid.Column="1">
+                                <TextBox Height="22" Margin="2.5,2.5,2.5,0" Text="{Binding AdvSearchMaxPlaylists}" ></TextBox>
+                            </StackPanel>
+                            
+                        </Grid>
+
+                        <Button Grid.Column="1" Width="100" Height="50" Click="ButtonAdvancedSearch_Click">GO!</Button>
+                        
+                    </Grid>
+                </GroupBox>
+            </Grid>
+            
+            <Grid x:Name="SearchResult" Grid.Row="1">
+                <Grid x:Name="SimpleProgress" Visibility="{Binding SimpleSearchProgressVisibility}">
+                    <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SearchProgressMessage}"></TextBlock>
+                </Grid>
+                <Grid x:Name="SimpleResult" Visibility="{Binding SimpleSearchResultVisibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding SimpleTracksVisibility}" />
+                        <RowDefinition Height="{Binding SimpleArtistsVisibility}" />
+                        <RowDefinition Height="{Binding SimpleAlbumsVisibility}" />
+                        <RowDefinition Height="{Binding SimplePlaylistsVisibility}" />
+                    </Grid.RowDefinitions>
+                    <controlBase:UserControlViewPlayablePaggingWrapper DataContext="{Binding SimpleTracks}" Margin="5,5,5,5" Grid.Row="0"></controlBase:UserControlViewPlayablePaggingWrapper>
+                    <controlBase:UserControlViewPlayablePaggingWrapper DataContext="{Binding SimpleArtists}" Margin="5,0,5,5" Grid.Row="1"></controlBase:UserControlViewPlayablePaggingWrapper>
+                    <controlBase:UserControlViewPlayablePaggingWrapper DataContext="{Binding SimpleAlbums}" Margin="5,0,5,5" Grid.Row="2"></controlBase:UserControlViewPlayablePaggingWrapper>
+                    <controlBase:UserControlViewPlayablePaggingWrapper DataContext="{Binding SimplePlaylists}" Margin="5,0,5,5" Grid.Row="3"></controlBase:UserControlViewPlayablePaggingWrapper>
+                </Grid>
+                <Grid x:Name="AdvancedResult" Visibility="{Binding AdvancedSearchResultVisibility}">
+                    
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

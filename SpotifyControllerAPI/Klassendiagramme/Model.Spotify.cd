@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="SpotifyControllerAPI.Model.Spotify.Album">
+    <Position X="6.75" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAEEUAAgAAAAAIAAAAAAAAAAQAAAEAAAAAQAIA=</HashCode>
+      <FileName>Model\Spotify\Album.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Artists" />
+      <Property Name="Copyrights" />
+      <Property Name="Tracks" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.Artist">
+    <Position X="12" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAgAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Spotify\Artist.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Followers" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.CopyRight">
+    <Position X="7.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAA=</HashCode>
+      <FileName>Model\Spotify\CopyRight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.CurrentlyPlaying">
+    <Position X="4.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAgAAAAAAAAACAAAEAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Model\Spotify\CurrentlyPlaying.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Context" />
+      <Property Name="Item" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.Device">
+    <Position X="9.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAoAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Spotify\Device.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.DevicePayloadItem">
+    <Position X="9.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Spotify\DevicePayloadItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Devices" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.Followers">
+    <Position X="13.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Spotify\Followers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.Image">
+    <Position X="7.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Model\Spotify\Image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.PagingWrapper&lt;T&gt;">
+    <Position X="13" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAACgAAAAAAAQAAAAAAQABAAAAAAAAAgAA=</HashCode>
+      <FileName>Model\Spotify\PagingWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.Playlist">
+    <Position X="14.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACBAEAgAAAgEAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Model\Spotify\Playlist.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Followers" />
+      <Property Name="Owner" />
+      <Property Name="Tracks" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.PlaylistTrack">
+    <Position X="1.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAIAAAAAAAAAAABACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Spotify\PlaylistTrack.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Track" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.SpotifyBaseObject">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICQAAAAAAAAAAEAAAAAAQAAAAAABBACQAAAAAAAAA=</HashCode>
+      <FileName>Model\Spotify\SpotifyBaseObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Images" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.Track">
+    <Position X="4.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAEARACAAAAhgAABAAAAAAAAAAAIECACAAQAAA=</HashCode>
+      <FileName>Model\Spotify\Track.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Album" />
+      <Property Name="Artists" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.User">
+    <Position X="17" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAIAAACAAAAAgAAAAAAQAAAIAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Spotify\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.SearchResult">
+    <Position X="15.25" Y="7.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAkAAAAAAAAAAAAAAAAAAAAAAAEAACACAAAA=</HashCode>
+      <FileName>Model\Spotify\SearchResult.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Artists" />
+      <Property Name="Albums" />
+      <Property Name="Tracks" />
+      <Property Name="Playlists" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

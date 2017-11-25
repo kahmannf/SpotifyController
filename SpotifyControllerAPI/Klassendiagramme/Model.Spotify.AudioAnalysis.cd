@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="SpotifyControllerAPI.Model.Spotify.AudioAnalysis.AnalysisMetaData">
+    <Position X="0.75" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAQAAAAAAAAABAgAACAAAAAAAIAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Model\Spotify\AudioAnalysis\AnalysisMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.AudioAnalysis.AnalysisTrack">
+    <Position X="3.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>UBAGAAAAAICCBAQIQIQAABgAkAAAAAAAgIAAAgAUEQA=</HashCode>
+      <FileName>Model\Spotify\AudioAnalysis\AnalysisTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.AudioAnalysis.AudioAnalysis">
+    <Position X="3.75" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAEAAAAQAAAAAAAAAAiAAAIAAAEAAAAAAAAA=</HashCode>
+      <FileName>Model\Spotify\AudioAnalysis\AudioAnalysis.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Bars" />
+      <Property Name="Beats" />
+      <Property Name="Meta" />
+      <Property Name="Sections" />
+      <Property Name="Segments" />
+      <Property Name="Tatums" />
+      <Property Name="Track" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.AudioAnalysis.AudioBar">
+    <Position X="7.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACACAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Spotify\AudioAnalysis\AudioBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.AudioAnalysis.Section">
+    <Position X="8" Y="10.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ABACAAAAAICAAAQAAIAAAAAAEAAAAAAAAIAAAgAAAAA=</HashCode>
+      <FileName>Model\Spotify\AudioAnalysis\Section.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpotifyControllerAPI.Model.Spotify.AudioAnalysis.Segment">
+    <Position X="5" Y="10.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAQAQAAAAgAACAAI=</HashCode>
+      <FileName>Model\Spotify\AudioAnalysis\Segment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

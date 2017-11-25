@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{180B6335-61C0-4653-B51E-9B0E82BFCA7B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SpotifyControllerAPI</RootNamespace>
+    <AssemblyName>SpotifyControllerAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RandomUtilities">
+      <HintPath>.\RandomUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiHelper.cs" />
+    <Compile Include="Model\AggregationSearchTrackItem.cs" />
+    <Compile Include="Model\PlaylistAggregationSearch.cs" />
+    <Compile Include="Model\PlayTrackRequest.cs" />
+    <Compile Include="Model\SchedulerResult.cs" />
+    <Compile Include="Model\SearchConfiguration.cs" />
+    <Compile Include="Model\Session.cs" />
+    <Compile Include="Model\SessionHistoryItem.cs" />
+    <Compile Include="Model\Spotify\Album.cs" />
+    <Compile Include="Model\Spotify\Artist.cs" />
+    <Compile Include="Model\Spotify\AudioAnalysis\AudioBar.cs" />
+    <Compile Include="Model\Spotify\AudioAnalysis\AnalysisMetaData.cs" />
+    <Compile Include="Model\Spotify\AudioAnalysis\Section.cs" />
+    <Compile Include="Model\Spotify\AudioAnalysis\Segment.cs" />
+    <Compile Include="Model\Spotify\AudioAnalysis\AnalysisTrack.cs" />
+    <Compile Include="Model\Spotify\CopyRight.cs" />
+    <Compile Include="Model\Spotify\CurrentlyPlaying.cs" />
+    <Compile Include="Model\Spotify\Device.cs" />
+    <Compile Include="Model\Spotify\DevicePayloadItem.cs" />
+    <Compile Include="Model\Spotify\PagingWrapper.cs" />
+    <Compile Include="Model\Spotify\Playlist.cs" />
+    <Compile Include="Model\PlaylistAggregationSearchResult.cs" />
+    <Compile Include="Model\Spotify\PlaylistTrack.cs" />
+    <Compile Include="Model\Spotify\SearchResult.cs" />
+    <Compile Include="Model\Spotify\SpotifyBaseObject.cs" />
+    <Compile Include="Model\Spotify\Track.cs" />
+    <Compile Include="Model\Spotify\AudioAnalysis\AudioAnalysis.cs" />
+    <Compile Include="Model\Spotify\User.cs" />
+    <Compile Include="Model\Spotify\Image.cs" />
+    <Compile Include="Web\WebRequestScheduler.cs" />
+    <Compile Include="Model\WebRequestStatus.cs" />
+    <Compile Include="SpotifyLoadException.cs" />
+    <Compile Include="Model\Spotify\Followers.cs" />
+    <Compile Include="WebApiConfig.cs" />
+    <Compile Include="Web\Authentication\Authenticator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\Controller.cs" />
+    <Compile Include="Web\DataLoader.cs" />
+    <Compile Include="Web\WebHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Klassendiagramme\Model.cd" />
+    <None Include="Klassendiagramme\Model.Spotify.AudioAnalysis.cd" />
+    <None Include="Klassendiagramme\Model.Spotify.cd" />
+    <None Include="packages.config" />
+    <None Include="Klassendiagramme\Web.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
