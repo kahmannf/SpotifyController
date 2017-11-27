@@ -1,4 +1,5 @@
-﻿using SpotifyControllerAPI.Model.Spotify;
+﻿using SpotifyControllerAPI.Model;
+using SpotifyControllerAPI.Model.Spotify;
 using SpotifyControllerAPI.Web.Authentication;
 using System;
 using System.Collections.Generic;
@@ -61,46 +62,74 @@ namespace SpotifyController
 
         private void CommandBindingAddToSession_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = e.OriginalSource is FrameworkElement fe && fe.DataContext is SpotifyBaseObject;
+            e.CanExecute = e.OriginalSource is FrameworkElement fe && (fe.DataContext is SpotifyBaseObject || fe.DataContext is AggregationSearchTrackItem);
         }
 
         private void CommandBindingAddToSession_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            if (e.OriginalSource is FrameworkElement fe && fe.DataContext is SpotifyBaseObject sbo)
+            if (e.OriginalSource is FrameworkElement fe)
             {
-                (this.DataContext as ViewModelLoggedIn).Session.AddItemToBacklog(sbo);
+                if (fe.DataContext is SpotifyBaseObject sbo)
+                {
+                    (this.DataContext as ViewModelLoggedIn).Session.AddItemToBacklog(sbo);
+                }
+                else if (fe.DataContext is AggregationSearchTrackItem asti)
+                {
+                    (this.DataContext as ViewModelLoggedIn).Session.AddItemToBacklog(asti.Track);
+                }
             }
         }
 
         private void CommandBindingAddToQueue_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = e.OriginalSource is FrameworkElement fe && fe.DataContext is SpotifyBaseObject;
+            e.CanExecute = e.OriginalSource is FrameworkElement fe && (fe.DataContext is SpotifyBaseObject || fe.DataContext is AggregationSearchTrackItem);
         }
 
         private async void CommandBindingAddToQueue_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            if (e.OriginalSource is FrameworkElement fe && fe.DataContext is SpotifyBaseObject sbo)
+            if (e.OriginalSource is FrameworkElement fe)
             {
-                await (this.DataContext as ViewModelLoggedIn).Session.AddItemToQueue(sbo);
+                if (fe.DataContext is SpotifyBaseObject sbo)
+                {
+                    await (this.DataContext as ViewModelLoggedIn).Session.AddItemToQueue(sbo);
+                }
+                else if (fe.DataContext is AggregationSearchTrackItem asti)
+                {
+                    await  (this.DataContext as ViewModelLoggedIn).Session.AddItemToQueue(asti.Track);
+                }
             }
         }
 
         private void CommandBindingViewItem_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = e.OriginalSource is FrameworkElement fe && fe.DataContext is SpotifyBaseObject;
+            e.CanExecute = e.OriginalSource is FrameworkElement fe && (fe.DataContext is SpotifyBaseObject || fe.DataContext is AggregationSearchTrackItem);
         }
 
         private void CommandBindingViewItem_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            if (e.OriginalSource is FrameworkElement fe && fe.DataContext is SpotifyBaseObject sbo)
-            {
-                ViewModelLoggedIn vm = this.DataContext as ViewModelLoggedIn;
+            SpotifyBaseObject baseObject = null;
 
+            if (e.OriginalSource is FrameworkElement fe)
+            {
+                if (fe.DataContext is SpotifyBaseObject sbo)
+                {
+                    baseObject = sbo;
+                }
+                else if (fe.DataContext is AggregationSearchTrackItem agri)
+                {
+                    baseObject = agri.Track;
+                }
+
+
+                ViewModelLoggedIn vm = this.DataContext as ViewModelLoggedIn;
+                
                 /* unfortunately, the generic method doesnt recognize the derived type of the SpotifyBaseObject. 
                  * This turns in to a problem if the user tries to reload the view tab (because all derived properties will not be return from DataLoader.GetItemByHref<T>()).
                  * Because of that every type has to be handled explicit*/
-                switch (sbo)
+                switch (baseObject)
                 {
+                    case null:
+                        break;
                     case Playlist playlist:
                         vm.ViewSpotifyBaseObject(playlist);
                         break;
@@ -119,7 +148,7 @@ namespace SpotifyController
                     //    break;
                     default:
                         
-                        throw new Exception($"A object with the type {sbo.GetType().ToString()} cannot be displayed");
+                        throw new Exception($"A object with the type {baseObject.GetType().ToString()} cannot be displayed");
                 }
             }
         }
